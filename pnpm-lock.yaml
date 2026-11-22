@@ -13,13 +13,19 @@ importers:
         version: 12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core':
         specifier: ^12.0.1
-        version: 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/microservices':
+        specifier: ^12.6.0
+        version: 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(kafkajs@2.2.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/observe':
         specifier: ^0.3.0
-        version: 0.3.27(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 0.3.27(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(@nestjs/microservices@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express':
         specifier: ^12.0.1
         version: 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(rxjs@7.8.2)
+      kafkajs:
+        specifier: ^2.2.4
+        version: 2.2.4
       reflect-metadata:
         specifier: ^0.2.2
         version: 0.2.2
@@ -38,7 +44,7 @@ importers:
         version: 12.0.16(chokidar@5.0.0)(prettier@3.10.1)(typescript@6.0.3)
       '@nestjs/testing':
         specifier: ^12.0.1
-        version: 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(@nestjs/platform-express@12.6.0)
+        version: 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)
       '@rspack/core':
         specifier: ^2.1.10
         version: 2.3.3
@@ -401,6 +407,42 @@ packages:
     resolution: {integrity: sha512-VDrolWI8sAt1Z2HzQ+6uNtedK6+ZWmtp5bahuiu9HnJz9CgLUu5cN5WfR3kleMFPZWinSaExSFyUWtK8PBJp6Q==}
     engines: {node: '>= 20.0.0'}
     hasBin: true
+
+  '@nestjs/microservices@12.6.0':
+    resolution: {integrity: sha512-3JvcnCyDp+QpI/GoVNT34/6hcJn3mYEHIPUWoXHvGJEDXqgzKi/so8kAuxs46hBuQiH4T7FCkiTmCM9r+hSgug==}
+    peerDependencies:
+      '@grpc/grpc-js': '*'
+      '@nats-io/transport-node': '*'
+      '@nestjs/common': ^12.0.0
+      '@nestjs/core': ^12.0.0
+      '@nestjs/websockets': ^12.0.0
+      amqp-connection-manager: '*'
+      amqplib: '*'
+      cache-manager: '*'
+      ioredis: '*'
+      kafkajs: '*'
+      mqtt: '*'
+      reflect-metadata: ^0.1.12 || ^0.2.0
+      rxjs: ^7.1.0
+    peerDependenciesMeta:
+      '@grpc/grpc-js':
+        optional: true
+      '@nats-io/transport-node':
+        optional: true
+      '@nestjs/websockets':
+        optional: true
+      amqp-connection-manager:
+        optional: true
+      amqplib:
+        optional: true
+      cache-manager:
+        optional: true
+      ioredis:
+        optional: true
+      kafkajs:
+        optional: true
+      mqtt:
+        optional: true
 
   '@nestjs/observe@0.3.27':
     resolution: {integrity: sha512-PTUNstMh5UnIH3xWdz5S1HXyvPt538nvsLTJp7CIFLmziej6+Y4thj9SBYoUEJauOj/URnb2JVfyjzm5m+YJBQ==}
@@ -1593,6 +1635,10 @@ packages:
   jsonfile@6.2.1:
     resolution: {integrity: sha512-zwOTdL3rFQ/lRdBnntKVOX6k5cKJwEc1HdilT71BWEu7J41gXIB2MRp+vxduPSwZJPWBxEzv4yH1wYLJGUHX4Q==}
 
+  kafkajs@2.2.4:
+    resolution: {integrity: sha512-j/YeapB1vfPT2iOIUn/vxdyKEuhuY2PxMBvf5JWux6iSaukAccrMtXEY/Lb7OvavDhOWME589bpLrEdnVHjfjA==}
+    engines: {node: '>=14.0.0'}
+
   lightningcss-android-arm64@1.33.0:
     resolution: {integrity: sha512-gEpRTalKdosp4Bb8qWtc2iOgE5SeIHlpS1up9bFq2wAyYhl1UdTObYiHe98zEM9SQvSoqQZ1IQD0JNpg3Ml5pg==}
     engines: {node: '>= 12.0.0'}
@@ -2683,7 +2729,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@nestjs/core@12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
+  '@nestjs/core@12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
     dependencies:
       '@nestjs/common': 12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2)
       fast-safe-stringify: 2.1.1
@@ -2694,6 +2740,7 @@ snapshots:
       tslib: 2.9.1
       uid: 2.0.2
     optionalDependencies:
+      '@nestjs/microservices': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(kafkajs@2.2.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(rxjs@7.8.2)
 
   '@nestjs/mau@0.2.9':
@@ -2706,18 +2753,31 @@ snapshots:
       ora: 5.4.1
       undici: 6.20.1
 
-  '@nestjs/observe@0.3.27(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
+  '@nestjs/microservices@12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(kafkajs@2.2.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
+    dependencies:
+      '@nestjs/common': 12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      iterare: 1.2.1
+      reflect-metadata: 0.2.2
+      rxjs: 7.8.2
+      tslib: 2.9.1
+    optionalDependencies:
+      kafkajs: 2.2.4
+
+  '@nestjs/observe@0.3.27(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(@nestjs/microservices@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@nestjs/common': 12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
+    optionalDependencies:
+      '@nestjs/microservices': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(kafkajs@2.2.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
 
   '@nestjs/platform-express@12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(rxjs@7.8.2)':
     dependencies:
       '@nestjs/common': 12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       cors: 2.8.6
       express: 5.3.0
       multer: 2.5.0
@@ -2740,12 +2800,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@nestjs/testing@12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(@nestjs/platform-express@12.6.0)':
+  '@nestjs/testing@12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)':
     dependencies:
       '@nestjs/common': 12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2)
-      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       tslib: 2.9.1
     optionalDependencies:
+      '@nestjs/microservices': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(kafkajs@2.2.4)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express': 12.6.0(@nestjs/common@12.6.0(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@12.6.0)(rxjs@7.8.2)
 
   '@noble/hashes@1.8.0': {}
@@ -3755,6 +3816,8 @@ snapshots:
       universalify: 2.0.1
     optionalDependencies:
       graceful-fs: 4.2.12
+
+  kafkajs@2.2.4: {}
 
   lightningcss-android-arm64@1.33.0:
     optional: true

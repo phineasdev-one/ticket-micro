@@ -28,6 +28,12 @@
       ],
       "@app/common/*": [
         "./libs/common/src/*"
+      ],
+      "@app/kafka": [
+        "./libs/kafka/src/index.ts"
+      ],
+      "@app/kafka/*": [
+        "./libs/kafka/src/*"
       ]
     }
   },
