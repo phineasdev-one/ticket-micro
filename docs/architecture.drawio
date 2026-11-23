@@ -1,0 +1,91 @@
+<mxfile host="app.diagrams.net" modified="2026-06-05T00:00:00.000Z" agent="GitHub Copilot" version="24.7.17" type="device">
+  <diagram id="ticket-micro-architecture" name="Kiến trúc hiện tại và tương lai">
+    <mxGraphModel dx="1440" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="TICKET-MICRO — KIẾN TRÚC HỌC TẬP&#xa;Thành phần đang triển khai (nét liền) và kế hoạch tương lai (nét đứt)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontStyle=1;fontColor=#17365D;" vertex="1" parent="1">
+          <mxGeometry x="320" y="25" width="920" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="Client / HTTP&#xa;Postman, curl hoặc frontend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#0288D1;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="300" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="gateway" value="API Gateway&#xa;NestJS · :3000&#xa;HTTP entry point / proxy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="290" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" value="Auth Service&#xa;NestJS · :3001&#xa;Register / Login / JWT / Profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="180" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="events" value="Events Service&#xa;NestJS · :3003&#xa;CRUD / Publish / Cancel events" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="390" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="database" value="PostgreSQL · :5432&#xa;Một database dùng chung&#xa;users · events · tickets (schema)&#xa;Drizzle ORM / Drizzle Kit" style="shape=cylinder;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="285" width="250" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="kafka" value="Kafka Broker&#xa;Host: localhost:9093&#xa;Docker network: kafka:29092&#xa;Events topics được khai báo/phát" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="520" width="280" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="zk" value="ZooKeeper&#xa;:2181&#xa;(được Kafka Compose dùng)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="690" width="180" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="kafkaui" value="Kafka UI&#xa;http://localhost:8080" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="535" width="190" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" value="Redis · :6379&#xa;Compose có sẵn; app chưa tích hợp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="570" width="230" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="mailhog" value="MailHog · SMTP :1025&#xa;UI :8025; app chưa tích hợp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="570" width="240" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="futureTicket" value="TƯƠNG LAI: Ticket Service&#xa;Dự kiến :3004&#xa;Bảng tickets đã có trong schema; service chưa có" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;dashPattern=8 4;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="600" width="270" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="futureNotification" value="TƯƠNG LAI: Notification Service&#xa;Dự kiến :3006&#xa;Consumer gửi email; chưa triển khai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9673A6;dashed=1;dashPattern=8 4;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="745" width="270" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="Ghi chú: các app NestJS chạy riêng trên máy host trong hướng dẫn hiện tại; Docker Compose chỉ khởi chạy hạ tầng. Kafka producer đã được nối ở Events Service nhưng Kafka consumer/handler chưa được triển khai." style="shape=note;whiteSpace=wrap;html=1;size=20;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="970" y="790" width="520" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeClientGateway" value="HTTP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#0288D1;fontSize=13;" edge="1" parent="1" source="client" target="gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeGatewayAuth" value="HTTP proxy&#xa;/auth/*" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#82B366;fontSize=12;" edge="1" parent="1" source="gateway" target="auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeGatewayEvents" value="HTTP proxy&#xa;/events/*" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#82B366;fontSize=12;" edge="1" parent="1" source="gateway" target="events">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeAuthDb" value="Drizzle / SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=both;endFill=1;strokeWidth=2;strokeColor=#D6B656;fontSize=12;" edge="1" parent="1" source="auth" target="database">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeEventsDb" value="Drizzle / SQL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=both;endFill=1;strokeWidth=2;strokeColor=#D6B656;fontSize=12;" edge="1" parent="1" source="events" target="database">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeEventsKafka" value="Producer: event.created / updated / cancelled" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#B85450;fontSize=12;" edge="1" parent="1" source="events" target="kafka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeKafkaZk" value="Kafka metadata" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1;strokeColor=#666666;fontSize=11;" edge="1" parent="1" source="kafka" target="zk">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeUiKafka" value="Quan sát cluster" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=none;dashed=1;strokeColor=#666666;fontSize=11;" edge="1" parent="1" source="kafkaui" target="kafka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeTicketDb" value="Dự kiến" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=both;endFill=1;dashed=1;strokeColor=#9673A6;fontSize=11;" edge="1" parent="1" source="futureTicket" target="database">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeTicketKafka" value="Dự kiến event vé" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;dashed=1;strokeColor=#9673A6;fontSize=11;" edge="1" parent="1" source="futureTicket" target="kafka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeNotificationKafka" value="Dự kiến consumer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=block;startFill=1;endArrow=block;endFill=1;dashed=1;strokeColor=#9673A6;fontSize=11;" edge="1" parent="1" source="futureNotification" target="kafka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edgeNotificationMailhog" value="Gửi email (tương lai)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;dashed=1;strokeColor=#9673A6;fontSize=11;" edge="1" parent="1" source="futureNotification" target="mailhog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="CHÚ GIẢI&#xa;Nét liền màu xanh: service hiện có&#xa;Nét liền giữa service và Kafka/DB: kết nối đang dùng&#xa;Nét đứt tím: ý tưởng / service tương lai, chưa triển khai&#xa;Redis và MailHog: container có trong Compose, chưa dùng bởi app" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;fontSize=12;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="700" width="500" height="145" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

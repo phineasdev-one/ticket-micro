@@ -3,6 +3,7 @@ import { createObserveModule } from '@nestjs/observe';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module.js';
+import { EventsModule } from './events/events.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -17,6 +18,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       serviceId: 'ticket-micro',
     }),
     AuthModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
